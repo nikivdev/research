@@ -42,11 +42,11 @@
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
-	"services": [
-		{
-			"binding": "WORKER_RPC",
-			"service": "fullstack-monorepo-template-worker",
-			"entrypoint": "WorkerRpc"
-		}
-	]
+	// "services": [
+	// 	{
+	// 		"binding": "WORKER_RPC",
+	// 		"service": "fullstack-monorepo-template-worker",
+	// 		"entrypoint": "WorkerRpc"
+	// 	}
+	// ]
 }
