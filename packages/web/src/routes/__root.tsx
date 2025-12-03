@@ -4,6 +4,8 @@ import {
   HeadContent,
   Scripts,
   createRootRoute,
+  Link,
+  useLocation,
 } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import { CommandPalette } from "../components/command-palette"
@@ -25,6 +27,8 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   const [showDevtools, setShowDevtools] = React.useState(false)
+  const location = useLocation()
+  const isHomePage = location.pathname === "/"
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

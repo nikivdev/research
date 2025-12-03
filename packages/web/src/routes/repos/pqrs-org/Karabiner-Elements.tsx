@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Link } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/repos/pqrs-org/Karabiner-Elements")({
   component: KarabinerElementsPage,
@@ -11,13 +11,11 @@ function KarabinerElementsPage() {
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xl">
-              ⌨️
-            </div>
-            <div>
-              <h1 className="text-xl font-bold">Karabiner-Elements</h1>
-              <p className="text-sm text-slate-400">Deep Dive into macOS Keyboard Remapping</p>
-            </div>
+            <Link to="/" className="hover:scale-110 transition-transform">🏡</Link>
+            <span className="text-slate-600">/</span>
+            <span className="text-purple-400 text-sm font-mono">repos/pqrs-org</span>
+            <span className="text-slate-600">/</span>
+            <h1 className="text-lg font-semibold">Karabiner-Elements</h1>
           </div>
         </div>
       </header>

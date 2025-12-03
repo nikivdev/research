@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Link } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/tech/electric")({
   component: ElectricPage,
@@ -11,6 +11,8 @@ function ElectricPage() {
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center gap-3">
+            <Link to="/" className="hover:scale-110 transition-transform">🏡</Link>
+            <span className="text-slate-600">/</span>
             <span className="text-yellow-400 text-sm font-mono">tech</span>
             <span className="text-slate-600">/</span>
             <h1 className="text-lg font-semibold">Electric SQL</h1>

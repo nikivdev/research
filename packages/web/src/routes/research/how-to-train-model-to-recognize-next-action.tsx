@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Link } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/research/how-to-train-model-to-recognize-next-action")({
   component: NextActionPredictionPage,
@@ -11,13 +11,11 @@ function NextActionPredictionPage() {
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-xl">
-              🧠
-            </div>
-            <div>
-              <h1 className="text-xl font-bold">Training a Next-Action Prediction Model</h1>
-              <p className="text-sm text-slate-400">Personalized Computer Use with JAX</p>
-            </div>
+            <Link to="/" className="hover:scale-110 transition-transform">🏡</Link>
+            <span className="text-slate-600">/</span>
+            <span className="text-emerald-400 text-sm font-mono">research</span>
+            <span className="text-slate-600">/</span>
+            <h1 className="text-lg font-semibold">Next-Action Prediction</h1>
           </div>
         </div>
       </header>
