@@ -1,0 +1,13 @@
+version = 1
+name = "flow"
+
+[deps]
+fast = "github.com/1focus-ai/fast"
+
+[[tasks]]
+name = "setup"
+command = "bun i"
+
+[[tasks]]
+name = "dev"
+command = "bun --watch run.ts"
