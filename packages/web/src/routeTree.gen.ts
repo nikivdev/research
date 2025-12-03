@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TechElectricRouteImport } from './routes/tech/electric'
 import { Route as TechCloudflareRouteImport } from './routes/tech/cloudflare'
+import { Route as ResearchHowToTrainModelToRecognizeNextActionRouteImport } from './routes/research/how-to-train-model-to-recognize-next-action'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
+import { Route as ReposPqrsOrgKarabinerElementsRouteImport } from './routes/repos/pqrs-org/Karabiner-Elements'
 import { Route as ReposKarpathyNanochatRouteImport } from './routes/repos/karpathy/nanochat'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
@@ -43,6 +45,12 @@ const TechCloudflareRoute = TechCloudflareRouteImport.update({
   path: '/tech/cloudflare',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchHowToTrainModelToRecognizeNextActionRoute =
+  ResearchHowToTrainModelToRecognizeNextActionRouteImport.update({
+    id: '/research/how-to-train-model-to-recognize-next-action',
+    path: '/research/how-to-train-model-to-recognize-next-action',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiUsersRoute = ApiUsersRouteImport.update({
   id: '/api/users',
   path: '/api/users',
@@ -58,6 +66,12 @@ const ApiChatMessagesRoute = ApiChatMessagesRouteImport.update({
   path: '/api/chat-messages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReposPqrsOrgKarabinerElementsRoute =
+  ReposPqrsOrgKarabinerElementsRouteImport.update({
+    id: '/repos/pqrs-org/Karabiner-Elements',
+    path: '/repos/pqrs-org/Karabiner-Elements',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ReposKarpathyNanochatRoute = ReposKarpathyNanochatRouteImport.update({
   id: '/repos/karpathy/nanochat',
   path: '/repos/karpathy/nanochat',
@@ -124,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -134,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
+  '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -144,6 +160,7 @@ export interface FileRoutesByTo {
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -154,6 +171,7 @@ export interface FileRoutesByTo {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
+  '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -165,6 +183,7 @@ export interface FileRoutesById {
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -175,6 +194,7 @@ export interface FileRoutesById {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
+  '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -187,6 +207,7 @@ export interface FileRouteTypes {
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
     | '/api/auth/$'
@@ -197,6 +218,7 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
     | '/repos/karpathy/nanochat'
+    | '/repos/pqrs-org/Karabiner-Elements'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -207,6 +229,7 @@ export interface FileRouteTypes {
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
     | '/api/auth/$'
@@ -217,6 +240,7 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
     | '/repos/karpathy/nanochat'
+    | '/repos/pqrs-org/Karabiner-Elements'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -227,6 +251,7 @@ export interface FileRouteTypes {
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
     | '/api/auth/$'
@@ -237,6 +262,7 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
     | '/repos/karpathy/nanochat'
+    | '/repos/pqrs-org/Karabiner-Elements'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -248,6 +274,7 @@ export interface RootRouteChildren {
   ApiChatMessagesRoute: typeof ApiChatMessagesRoute
   ApiChatThreadsRoute: typeof ApiChatThreadsRoute
   ApiUsersRoute: typeof ApiUsersRoute
+  ResearchHowToTrainModelToRecognizeNextActionRoute: typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   TechCloudflareRoute: typeof TechCloudflareRoute
   TechElectricRoute: typeof TechElectricRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -258,6 +285,7 @@ export interface RootRouteChildren {
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
   ReposKarpathyNanochatRoute: typeof ReposKarpathyNanochatRoute
+  ReposPqrsOrgKarabinerElementsRoute: typeof ReposPqrsOrgKarabinerElementsRoute
   DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
   DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
   DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
@@ -287,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TechCloudflareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research/how-to-train-model-to-recognize-next-action': {
+      id: '/research/how-to-train-model-to-recognize-next-action'
+      path: '/research/how-to-train-model-to-recognize-next-action'
+      fullPath: '/research/how-to-train-model-to-recognize-next-action'
+      preLoaderRoute: typeof ResearchHowToTrainModelToRecognizeNextActionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/users': {
       id: '/api/users'
       path: '/api/users'
@@ -306,6 +341,13 @@ declare module '@tanstack/react-router' {
       path: '/api/chat-messages'
       fullPath: '/api/chat-messages'
       preLoaderRoute: typeof ApiChatMessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/pqrs-org/Karabiner-Elements': {
+      id: '/repos/pqrs-org/Karabiner-Elements'
+      path: '/repos/pqrs-org/Karabiner-Elements'
+      fullPath: '/repos/pqrs-org/Karabiner-Elements'
+      preLoaderRoute: typeof ReposPqrsOrgKarabinerElementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/repos/karpathy/nanochat': {
@@ -400,6 +442,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiChatMessagesRoute: ApiChatMessagesRoute,
   ApiChatThreadsRoute: ApiChatThreadsRoute,
   ApiUsersRoute: ApiUsersRoute,
+  ResearchHowToTrainModelToRecognizeNextActionRoute:
+    ResearchHowToTrainModelToRecognizeNextActionRoute,
   TechCloudflareRoute: TechCloudflareRoute,
   TechElectricRoute: TechElectricRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
@@ -410,6 +454,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
   ReposKarpathyNanochatRoute: ReposKarpathyNanochatRoute,
+  ReposPqrsOrgKarabinerElementsRoute: ReposPqrsOrgKarabinerElementsRoute,
   DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
