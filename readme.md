@@ -1,5 +1,3 @@
 # [r.nikiv.dev](https://r.nikiv.dev)
 
-Messy for now.
-
-
+Abusing Claude Code lots for this.
