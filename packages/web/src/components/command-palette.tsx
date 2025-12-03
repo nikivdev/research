@@ -12,6 +12,7 @@ const pages: Page[] = [
   { name: "DeepSeek-V3.2", path: "/papers/25/deepseek-v3-2", description: "Paper explanation" },
   { name: "Cloudflare", path: "/tech/cloudflare", description: "Cloudflare products overview" },
   { name: "Electric SQL", path: "/tech/electric", description: "Real-time Postgres sync" },
+  { name: "NanoChat", path: "/repos/karpathy/nanochat", description: "Karpathy's full-stack LLM training" },
 ]
 
 export function CommandPalette() {

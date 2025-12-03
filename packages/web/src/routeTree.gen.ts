@@ -15,6 +15,7 @@ import { Route as TechCloudflareRouteImport } from './routes/tech/cloudflare'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
+import { Route as ReposKarpathyNanochatRouteImport } from './routes/repos/karpathy/nanochat'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -55,6 +56,11 @@ const ApiChatThreadsRoute = ApiChatThreadsRouteImport.update({
 const ApiChatMessagesRoute = ApiChatMessagesRouteImport.update({
   id: '/api/chat-messages',
   path: '/api/chat-messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReposKarpathyNanochatRoute = ReposKarpathyNanochatRouteImport.update({
+  id: '/repos/karpathy/nanochat',
+  path: '/repos/karpathy/nanochat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Papers25DeepseekV32Route = Papers25DeepseekV32RouteImport.update({
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -146,6 +153,7 @@ export interface FileRoutesByTo {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -166,6 +174,7 @@ export interface FileRoutesById {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -187,6 +196,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/karpathy/nanochat'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/karpathy/nanochat'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -225,6 +236,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/karpathy/nanochat'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -245,6 +257,7 @@ export interface RootRouteChildren {
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
+  ReposKarpathyNanochatRoute: typeof ReposKarpathyNanochatRoute
   DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
   DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
   DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       path: '/api/chat-messages'
       fullPath: '/api/chat-messages'
       preLoaderRoute: typeof ApiChatMessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/karpathy/nanochat': {
+      id: '/repos/karpathy/nanochat'
+      path: '/repos/karpathy/nanochat'
+      fullPath: '/repos/karpathy/nanochat'
+      preLoaderRoute: typeof ReposKarpathyNanochatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/papers/25/deepseek-v3-2': {
@@ -389,6 +409,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
+  ReposKarpathyNanochatRoute: ReposKarpathyNanochatRoute,
   DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
