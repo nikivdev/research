@@ -24,7 +24,6 @@ fi
 node - <<'NODE'
 const fs = require("fs")
 const path = require("path")
-const crypto = require("crypto")
 
 const envPath = path.join("packages", "web", ".env")
 let text = fs.readFileSync(envPath, "utf8")
@@ -44,14 +43,8 @@ const ensureKey = (key, value, shouldReplace = () => false) => {
 }
 
 ensureKey(
-  "BETTER_AUTH_SECRET",
-  crypto.randomBytes(32).toString("hex"),
-  (current) => current === "your-strong-secret"
-)
-ensureKey("APP_BASE_URL", "http://localhost:5010")
-ensureKey(
   "DATABASE_URL",
-  "postgresql://postgres:password@db.localtest.me:5432/electric",
+  "postgresql://postgres:password@db.localtest.me:5432/research",
   (current) =>
     current === "postgresql://user:password@host:5432/dbname" ||
     /user:password@host:5432/.test(current)
@@ -243,71 +236,11 @@ docker compose up -d
 echo "Waiting for Postgres to be ready..."
 sleep 5
 
-# Create tables if they don't exist
-docker exec -i gen-postgres psql -U postgres -d electric -c "
--- Better-auth tables (camelCase columns)
-CREATE TABLE IF NOT EXISTS users (
-  id text PRIMARY KEY,
-  name text NOT NULL,
-  email text NOT NULL UNIQUE,
-  \"emailVerified\" boolean NOT NULL DEFAULT false,
-  image text,
-  \"createdAt\" timestamp NOT NULL DEFAULT now(),
-  \"updatedAt\" timestamp NOT NULL DEFAULT now()
-);
-CREATE TABLE IF NOT EXISTS sessions (
-  id text PRIMARY KEY,
-  \"expiresAt\" timestamp NOT NULL,
-  token text NOT NULL UNIQUE,
-  \"createdAt\" timestamp NOT NULL,
-  \"updatedAt\" timestamp NOT NULL,
-  \"ipAddress\" text,
-  \"userAgent\" text,
-  \"userId\" text NOT NULL REFERENCES users(id) ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS accounts (
-  id text PRIMARY KEY,
-  \"accountId\" text NOT NULL,
-  \"providerId\" text NOT NULL,
-  \"userId\" text NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  \"accessToken\" text,
-  \"refreshToken\" text,
-  \"idToken\" text,
-  \"accessTokenExpiresAt\" timestamp,
-  \"refreshTokenExpiresAt\" timestamp,
-  scope text,
-  password text,
-  \"createdAt\" timestamp NOT NULL,
-  \"updatedAt\" timestamp NOT NULL
-);
-CREATE TABLE IF NOT EXISTS verifications (
-  id text PRIMARY KEY,
-  identifier text NOT NULL,
-  value text NOT NULL,
-  \"expiresAt\" timestamp NOT NULL,
-  \"createdAt\" timestamp DEFAULT now(),
-  \"updatedAt\" timestamp DEFAULT now()
-);
--- App tables (snake_case for Electric sync)
-CREATE TABLE IF NOT EXISTS chat_threads (
-  id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title text NOT NULL,
-  user_id text NOT NULL,
-  created_at timestamptz NOT NULL DEFAULT now()
-);
-CREATE TABLE IF NOT EXISTS chat_messages (
-  id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  thread_id integer NOT NULL REFERENCES chat_threads(id) ON DELETE CASCADE,
-  role varchar(32) NOT NULL,
-  content text NOT NULL,
-  created_at timestamptz NOT NULL DEFAULT now()
-);
-" >/dev/null 2>&1
-echo "✓ Database tables ready"
+echo "✓ Database ready"
 
 echo ""
 echo "Local services ready:"
-echo "  - Postgres: postgresql://postgres:password@db.localtest.me:5432/electric"
+echo "  - Postgres: postgresql://postgres:password@db.localtest.me:5432/research"
 echo "  - Neon HTTP Proxy: http://localhost:4444"
 echo "  - Electric: http://localhost:3100"
 echo ""

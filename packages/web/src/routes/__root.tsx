@@ -6,6 +6,7 @@ import {
   createRootRoute,
 } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
+import { CommandPalette } from "../components/command-palette"
 
 import appCss from "../styles.css?url"
 
@@ -14,18 +15,36 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Gen Chat" },
+      { title: "Research" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
   shellComponent: RootDocument,
-  component: () => (
+  component: RootComponent,
+})
+
+function RootComponent() {
+  const [showDevtools, setShowDevtools] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey && e.shiftKey && e.key === "d") {
+        e.preventDefault()
+        setShowDevtools((prev) => !prev)
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
+
+  return (
     <>
       <Outlet />
-      <TanStackRouterDevtools />
+      <CommandPalette />
+      {showDevtools && <TanStackRouterDevtools />}
     </>
-  ),
-})
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
