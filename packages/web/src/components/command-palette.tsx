@@ -1,13 +1,13 @@
 import * as React from "react"
 import { useNavigate } from "@tanstack/react-router"
 
-interface Page {
+export interface Page {
   name: string
   path: string
   description?: string
 }
 
-const pages: Page[] = [
+export const pages: Page[] = [
   { name: "Home", path: "/", description: "Landing page" },
   { name: "DeepSeek-V3.2", path: "/papers/25/deepseek-v3-2", description: "Paper explanation" },
   { name: "Cloudflare", path: "/tech/cloudflare", description: "Cloudflare products overview" },
@@ -17,8 +17,27 @@ const pages: Page[] = [
   { name: "Next-Action Prediction", path: "/research/how-to-train-model-to-recognize-next-action", description: "Train model to predict user's next action" },
 ]
 
+// Global function to open palette
+let openPaletteFn: (() => void) | null = null
+
+export function openCommandPalette() {
+  openPaletteFn?.()
+}
+
 export function CommandPalette() {
   const [open, setOpen] = React.useState(false)
+
+  // Register the open function
+  React.useEffect(() => {
+    openPaletteFn = () => {
+      setOpen(true)
+      setQuery("")
+      setSelectedIndex(0)
+    }
+    return () => {
+      openPaletteFn = null
+    }
+  }, [])
   const [query, setQuery] = React.useState("")
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const inputRef = React.useRef<HTMLInputElement>(null)
