@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TechElectricRouteImport } from './routes/tech/electric'
 import { Route as TechCloudflareRouteImport } from './routes/tech/cloudflare'
 import { Route as ResearchHowToTrainModelToRecognizeNextActionRouteImport } from './routes/research/how-to-train-model-to-recognize-next-action'
+import { Route as LibEffectRouteImport } from './routes/lib/effect'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
@@ -51,6 +52,11 @@ const ResearchHowToTrainModelToRecognizeNextActionRoute =
     path: '/research/how-to-train-model-to-recognize-next-action',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LibEffectRoute = LibEffectRouteImport.update({
+  id: '/lib/effect',
+  path: '/lib/effect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiUsersRoute = ApiUsersRouteImport.update({
   id: '/api/users',
   path: '/api/users',
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/lib/effect': typeof LibEffectRoute
   '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/lib/effect': typeof LibEffectRoute
   '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/lib/effect': typeof LibEffectRoute
   '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/lib/effect'
     | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/lib/effect'
     | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
@@ -251,6 +262,7 @@ export interface FileRouteTypes {
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/lib/effect'
     | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
@@ -274,6 +286,7 @@ export interface RootRouteChildren {
   ApiChatMessagesRoute: typeof ApiChatMessagesRoute
   ApiChatThreadsRoute: typeof ApiChatThreadsRoute
   ApiUsersRoute: typeof ApiUsersRoute
+  LibEffectRoute: typeof LibEffectRoute
   ResearchHowToTrainModelToRecognizeNextActionRoute: typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   TechCloudflareRoute: typeof TechCloudflareRoute
   TechElectricRoute: typeof TechElectricRoute
@@ -320,6 +333,13 @@ declare module '@tanstack/react-router' {
       path: '/research/how-to-train-model-to-recognize-next-action'
       fullPath: '/research/how-to-train-model-to-recognize-next-action'
       preLoaderRoute: typeof ResearchHowToTrainModelToRecognizeNextActionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lib/effect': {
+      id: '/lib/effect'
+      path: '/lib/effect'
+      fullPath: '/lib/effect'
+      preLoaderRoute: typeof LibEffectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/users': {
@@ -442,6 +462,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiChatMessagesRoute: ApiChatMessagesRoute,
   ApiChatThreadsRoute: ApiChatThreadsRoute,
   ApiUsersRoute: ApiUsersRoute,
+  LibEffectRoute: LibEffectRoute,
   ResearchHowToTrainModelToRecognizeNextActionRoute:
     ResearchHowToTrainModelToRecognizeNextActionRoute,
   TechCloudflareRoute: TechCloudflareRoute,

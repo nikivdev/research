@@ -15,6 +15,7 @@ export const pages: Page[] = [
   { name: "NanoChat", path: "/repos/karpathy/nanochat", description: "Karpathy's full-stack LLM training" },
   { name: "Karabiner-Elements", path: "/repos/pqrs-org/Karabiner-Elements", description: "macOS keyboard remapping deep dive" },
   { name: "Next-Action Prediction", path: "/research/how-to-train-model-to-recognize-next-action", description: "Train model to predict user's next action" },
+  { name: "Effect", path: "/lib/effect", description: "TypeScript effect system deep dive" },
 ]
 
 // Global function to open palette
