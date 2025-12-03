@@ -9,9 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UsersRouteImport } from './routes/users'
-import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TechElectricRouteImport } from './routes/tech/electric'
+import { Route as TechCloudflareRouteImport } from './routes/tech/cloudflare'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
@@ -27,19 +27,19 @@ import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
-const UsersRoute = UsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChatRoute = ChatRouteImport.update({
-  id: '/chat',
-  path: '/chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechElectricRoute = TechElectricRouteImport.update({
+  id: '/tech/electric',
+  path: '/tech/electric',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechCloudflareRoute = TechCloudflareRouteImport.update({
+  id: '/tech/cloudflare',
+  path: '/tech/cloudflare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiUsersRoute = ApiUsersRouteImport.update({
@@ -115,11 +115,11 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/chat': typeof ChatRoute
-  '/users': typeof UsersRoute
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/tech/cloudflare': typeof TechCloudflareRoute
+  '/tech/electric': typeof TechElectricRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/chat/ai': typeof ApiChatAiRoute
   '/api/chat/mutations': typeof ApiChatMutationsRoute
@@ -134,11 +134,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/chat': typeof ChatRoute
-  '/users': typeof UsersRoute
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/tech/cloudflare': typeof TechCloudflareRoute
+  '/tech/electric': typeof TechElectricRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/chat/ai': typeof ApiChatAiRoute
   '/api/chat/mutations': typeof ApiChatMutationsRoute
@@ -154,11 +154,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/chat': typeof ChatRoute
-  '/users': typeof UsersRoute
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
   '/api/users': typeof ApiUsersRoute
+  '/tech/cloudflare': typeof TechCloudflareRoute
+  '/tech/electric': typeof TechElectricRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/chat/ai': typeof ApiChatAiRoute
   '/api/chat/mutations': typeof ApiChatMutationsRoute
@@ -175,11 +175,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/chat'
-    | '/users'
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/tech/cloudflare'
+    | '/tech/electric'
     | '/api/auth/$'
     | '/api/chat/ai'
     | '/api/chat/mutations'
@@ -194,11 +194,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/chat'
-    | '/users'
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/tech/cloudflare'
+    | '/tech/electric'
     | '/api/auth/$'
     | '/api/chat/ai'
     | '/api/chat/mutations'
@@ -213,11 +213,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/chat'
-    | '/users'
     | '/api/chat-messages'
     | '/api/chat-threads'
     | '/api/users'
+    | '/tech/cloudflare'
+    | '/tech/electric'
     | '/api/auth/$'
     | '/api/chat/ai'
     | '/api/chat/mutations'
@@ -233,11 +233,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ChatRoute: typeof ChatRoute
-  UsersRoute: typeof UsersRoute
   ApiChatMessagesRoute: typeof ApiChatMessagesRoute
   ApiChatThreadsRoute: typeof ApiChatThreadsRoute
   ApiUsersRoute: typeof ApiUsersRoute
+  TechCloudflareRoute: typeof TechCloudflareRoute
+  TechElectricRoute: typeof TechElectricRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiChatAiRoute: typeof ApiChatAiRoute
   ApiChatMutationsRoute: typeof ApiChatMutationsRoute
@@ -253,25 +253,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/users': {
-      id: '/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof UsersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chat': {
-      id: '/chat'
-      path: '/chat'
-      fullPath: '/chat'
-      preLoaderRoute: typeof ChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tech/electric': {
+      id: '/tech/electric'
+      path: '/tech/electric'
+      fullPath: '/tech/electric'
+      preLoaderRoute: typeof TechElectricRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tech/cloudflare': {
+      id: '/tech/cloudflare'
+      path: '/tech/cloudflare'
+      fullPath: '/tech/cloudflare'
+      preLoaderRoute: typeof TechCloudflareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/users': {
@@ -377,11 +377,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ChatRoute: ChatRoute,
-  UsersRoute: UsersRoute,
   ApiChatMessagesRoute: ApiChatMessagesRoute,
   ApiChatThreadsRoute: ApiChatThreadsRoute,
   ApiUsersRoute: ApiUsersRoute,
+  TechCloudflareRoute: TechCloudflareRoute,
+  TechElectricRoute: TechElectricRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiChatAiRoute: ApiChatAiRoute,
   ApiChatMutationsRoute: ApiChatMutationsRoute,

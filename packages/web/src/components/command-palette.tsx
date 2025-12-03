@@ -10,8 +10,8 @@ interface Page {
 const pages: Page[] = [
   { name: "Home", path: "/", description: "Landing page" },
   { name: "DeepSeek-V3.2", path: "/papers/25/deepseek-v3-2", description: "Paper explanation" },
-  { name: "Chat", path: "/chat", description: "Chat interface" },
-  { name: "Users", path: "/users", description: "Users page" },
+  { name: "Cloudflare", path: "/tech/cloudflare", description: "Cloudflare products overview" },
+  { name: "Electric SQL", path: "/tech/electric", description: "Real-time Postgres sync" },
 ]
 
 export function CommandPalette() {
