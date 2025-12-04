@@ -24,6 +24,7 @@ import { Route as ReposKarpathyNanochatRouteImport } from './routes/repos/karpat
 import { Route as ReposJaxMlJaxRouteImport } from './routes/repos/jax-ml/jax'
 import { Route as ReposGardenCoJazzRouteImport } from './routes/repos/garden-co/jazz'
 import { Route as ReposEarendilWorksAbsurdRouteImport } from './routes/repos/earendil-works/absurd'
+import { Route as ReposAnthropicsClaudeAgentSdkPythonRouteImport } from './routes/repos/anthropics/claude-agent-sdk-python'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -115,6 +116,12 @@ const ReposEarendilWorksAbsurdRoute =
     path: '/repos/earendil-works/absurd',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ReposAnthropicsClaudeAgentSdkPythonRoute =
+  ReposAnthropicsClaudeAgentSdkPythonRouteImport.update({
+    id: '/repos/anthropics/claude-agent-sdk-python',
+    path: '/repos/anthropics/claude-agent-sdk-python',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const Papers25DeepseekV32Route = Papers25DeepseekV32RouteImport.update({
   id: '/papers/25/deepseek-v3-2',
   path: '/papers/25/deepseek-v3-2',
@@ -187,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
@@ -215,6 +223,7 @@ export interface FileRoutesByTo {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
@@ -244,6 +253,7 @@ export interface FileRoutesById {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
     | '/repos/jax-ml/jax'
@@ -302,6 +313,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
     | '/repos/jax-ml/jax'
@@ -330,6 +342,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
     | '/repos/jax-ml/jax'
@@ -359,6 +372,7 @@ export interface RootRouteChildren {
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
+  ReposAnthropicsClaudeAgentSdkPythonRoute: typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   ReposEarendilWorksAbsurdRoute: typeof ReposEarendilWorksAbsurdRoute
   ReposGardenCoJazzRoute: typeof ReposGardenCoJazzRoute
   ReposJaxMlJaxRoute: typeof ReposJaxMlJaxRoute
@@ -479,6 +493,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReposEarendilWorksAbsurdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/repos/anthropics/claude-agent-sdk-python': {
+      id: '/repos/anthropics/claude-agent-sdk-python'
+      path: '/repos/anthropics/claude-agent-sdk-python'
+      fullPath: '/repos/anthropics/claude-agent-sdk-python'
+      preLoaderRoute: typeof ReposAnthropicsClaudeAgentSdkPythonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/papers/25/deepseek-v3-2': {
       id: '/papers/25/deepseek-v3-2'
       path: '/papers/25/deepseek-v3-2'
@@ -576,6 +597,8 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
+  ReposAnthropicsClaudeAgentSdkPythonRoute:
+    ReposAnthropicsClaudeAgentSdkPythonRoute,
   ReposEarendilWorksAbsurdRoute: ReposEarendilWorksAbsurdRoute,
   ReposGardenCoJazzRoute: ReposGardenCoJazzRoute,
   ReposJaxMlJaxRoute: ReposJaxMlJaxRoute,

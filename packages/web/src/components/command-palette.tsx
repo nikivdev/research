@@ -21,6 +21,7 @@ export const pages: Page[] = [
   { name: "Absurd", path: "/repos/earendil-works/absurd", description: "PostgreSQL-native durable execution workflows" },
   { name: "Jazz", path: "/repos/garden-co/jazz", description: "Distributed sync-first database for local-first apps" },
   { name: "JAX", path: "/repos/jax-ml/jax", description: "Composable transformations for ML on accelerators" },
+  { name: "Claude Agent SDK", path: "/repos/anthropics/claude-agent-sdk-python", description: "Official Python SDK for building AI agents" },
 ]
 
 // Global function to open palette
