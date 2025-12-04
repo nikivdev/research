@@ -21,6 +21,7 @@ import { Route as ReposSamuiBuildSamuiWalletRouteImport } from './routes/repos/s
 import { Route as ReposRyanssennTorchlessRouteImport } from './routes/repos/ryanssenn/torchless'
 import { Route as ReposPqrsOrgKarabinerElementsRouteImport } from './routes/repos/pqrs-org/Karabiner-Elements'
 import { Route as ReposKarpathyNanochatRouteImport } from './routes/repos/karpathy/nanochat'
+import { Route as ReposJaxMlJaxRouteImport } from './routes/repos/jax-ml/jax'
 import { Route as ReposGardenCoJazzRouteImport } from './routes/repos/garden-co/jazz'
 import { Route as ReposEarendilWorksAbsurdRouteImport } from './routes/repos/earendil-works/absurd'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
@@ -96,6 +97,11 @@ const ReposPqrsOrgKarabinerElementsRoute =
 const ReposKarpathyNanochatRoute = ReposKarpathyNanochatRouteImport.update({
   id: '/repos/karpathy/nanochat',
   path: '/repos/karpathy/nanochat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReposJaxMlJaxRoute = ReposJaxMlJaxRouteImport.update({
+  id: '/repos/jax-ml/jax',
+  path: '/repos/jax-ml/jax',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReposGardenCoJazzRoute = ReposGardenCoJazzRouteImport.update({
@@ -183,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
+  '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
@@ -210,6 +217,7 @@ export interface FileRoutesByTo {
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
+  '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
@@ -238,6 +246,7 @@ export interface FileRoutesById {
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
+  '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/papers/25/deepseek-v3-2'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
+    | '/repos/jax-ml/jax'
     | '/repos/karpathy/nanochat'
     | '/repos/pqrs-org/Karabiner-Elements'
     | '/repos/ryanssenn/torchless'
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/papers/25/deepseek-v3-2'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
+    | '/repos/jax-ml/jax'
     | '/repos/karpathy/nanochat'
     | '/repos/pqrs-org/Karabiner-Elements'
     | '/repos/ryanssenn/torchless'
@@ -321,6 +332,7 @@ export interface FileRouteTypes {
     | '/papers/25/deepseek-v3-2'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
+    | '/repos/jax-ml/jax'
     | '/repos/karpathy/nanochat'
     | '/repos/pqrs-org/Karabiner-Elements'
     | '/repos/ryanssenn/torchless'
@@ -349,6 +361,7 @@ export interface RootRouteChildren {
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
   ReposEarendilWorksAbsurdRoute: typeof ReposEarendilWorksAbsurdRoute
   ReposGardenCoJazzRoute: typeof ReposGardenCoJazzRoute
+  ReposJaxMlJaxRoute: typeof ReposJaxMlJaxRoute
   ReposKarpathyNanochatRoute: typeof ReposKarpathyNanochatRoute
   ReposPqrsOrgKarabinerElementsRoute: typeof ReposPqrsOrgKarabinerElementsRoute
   ReposRyanssennTorchlessRoute: typeof ReposRyanssennTorchlessRoute
@@ -443,6 +456,13 @@ declare module '@tanstack/react-router' {
       path: '/repos/karpathy/nanochat'
       fullPath: '/repos/karpathy/nanochat'
       preLoaderRoute: typeof ReposKarpathyNanochatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/jax-ml/jax': {
+      id: '/repos/jax-ml/jax'
+      path: '/repos/jax-ml/jax'
+      fullPath: '/repos/jax-ml/jax'
+      preLoaderRoute: typeof ReposJaxMlJaxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/repos/garden-co/jazz': {
@@ -558,6 +578,7 @@ const rootRouteChildren: RootRouteChildren = {
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
   ReposEarendilWorksAbsurdRoute: ReposEarendilWorksAbsurdRoute,
   ReposGardenCoJazzRoute: ReposGardenCoJazzRoute,
+  ReposJaxMlJaxRoute: ReposJaxMlJaxRoute,
   ReposKarpathyNanochatRoute: ReposKarpathyNanochatRoute,
   ReposPqrsOrgKarabinerElementsRoute: ReposPqrsOrgKarabinerElementsRoute,
   ReposRyanssennTorchlessRoute: ReposRyanssennTorchlessRoute,

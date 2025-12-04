@@ -20,6 +20,7 @@ export const pages: Page[] = [
   { name: "Samui Wallet", path: "/repos/samui-build/samui-wallet", description: "Solana wallet & toolbox for builders" },
   { name: "Absurd", path: "/repos/earendil-works/absurd", description: "PostgreSQL-native durable execution workflows" },
   { name: "Jazz", path: "/repos/garden-co/jazz", description: "Distributed sync-first database for local-first apps" },
+  { name: "JAX", path: "/repos/jax-ml/jax", description: "Composable transformations for ML on accelerators" },
 ]
 
 // Global function to open palette
