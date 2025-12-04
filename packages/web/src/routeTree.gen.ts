@@ -17,8 +17,12 @@ import { Route as LibEffectRouteImport } from './routes/lib/effect'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
+import { Route as ReposSamuiBuildSamuiWalletRouteImport } from './routes/repos/samui-build/samui-wallet'
+import { Route as ReposRyanssennTorchlessRouteImport } from './routes/repos/ryanssenn/torchless'
 import { Route as ReposPqrsOrgKarabinerElementsRouteImport } from './routes/repos/pqrs-org/Karabiner-Elements'
 import { Route as ReposKarpathyNanochatRouteImport } from './routes/repos/karpathy/nanochat'
+import { Route as ReposGardenCoJazzRouteImport } from './routes/repos/garden-co/jazz'
+import { Route as ReposEarendilWorksAbsurdRouteImport } from './routes/repos/earendil-works/absurd'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -72,6 +76,17 @@ const ApiChatMessagesRoute = ApiChatMessagesRouteImport.update({
   path: '/api/chat-messages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReposSamuiBuildSamuiWalletRoute =
+  ReposSamuiBuildSamuiWalletRouteImport.update({
+    id: '/repos/samui-build/samui-wallet',
+    path: '/repos/samui-build/samui-wallet',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ReposRyanssennTorchlessRoute = ReposRyanssennTorchlessRouteImport.update({
+  id: '/repos/ryanssenn/torchless',
+  path: '/repos/ryanssenn/torchless',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReposPqrsOrgKarabinerElementsRoute =
   ReposPqrsOrgKarabinerElementsRouteImport.update({
     id: '/repos/pqrs-org/Karabiner-Elements',
@@ -83,6 +98,17 @@ const ReposKarpathyNanochatRoute = ReposKarpathyNanochatRouteImport.update({
   path: '/repos/karpathy/nanochat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReposGardenCoJazzRoute = ReposGardenCoJazzRouteImport.update({
+  id: '/repos/garden-co/jazz',
+  path: '/repos/garden-co/jazz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReposEarendilWorksAbsurdRoute =
+  ReposEarendilWorksAbsurdRouteImport.update({
+    id: '/repos/earendil-works/absurd',
+    path: '/repos/earendil-works/absurd',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const Papers25DeepseekV32Route = Papers25DeepseekV32RouteImport.update({
   id: '/papers/25/deepseek-v3-2',
   path: '/papers/25/deepseek-v3-2',
@@ -155,8 +181,12 @@ export interface FileRoutesByFullPath {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
+  '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
+  '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
+  '/repos/samui-build/samui-wallet': typeof ReposSamuiBuildSamuiWalletRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -178,8 +208,12 @@ export interface FileRoutesByTo {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
+  '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
+  '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
+  '/repos/samui-build/samui-wallet': typeof ReposSamuiBuildSamuiWalletRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -202,8 +236,12 @@ export interface FileRoutesById {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
+  '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
+  '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
+  '/repos/samui-build/samui-wallet': typeof ReposSamuiBuildSamuiWalletRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -227,8 +265,12 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/earendil-works/absurd'
+    | '/repos/garden-co/jazz'
     | '/repos/karpathy/nanochat'
     | '/repos/pqrs-org/Karabiner-Elements'
+    | '/repos/ryanssenn/torchless'
+    | '/repos/samui-build/samui-wallet'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -250,8 +292,12 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/earendil-works/absurd'
+    | '/repos/garden-co/jazz'
     | '/repos/karpathy/nanochat'
     | '/repos/pqrs-org/Karabiner-Elements'
+    | '/repos/ryanssenn/torchless'
+    | '/repos/samui-build/samui-wallet'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -273,8 +319,12 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/earendil-works/absurd'
+    | '/repos/garden-co/jazz'
     | '/repos/karpathy/nanochat'
     | '/repos/pqrs-org/Karabiner-Elements'
+    | '/repos/ryanssenn/torchless'
+    | '/repos/samui-build/samui-wallet'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -297,8 +347,12 @@ export interface RootRouteChildren {
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
+  ReposEarendilWorksAbsurdRoute: typeof ReposEarendilWorksAbsurdRoute
+  ReposGardenCoJazzRoute: typeof ReposGardenCoJazzRoute
   ReposKarpathyNanochatRoute: typeof ReposKarpathyNanochatRoute
   ReposPqrsOrgKarabinerElementsRoute: typeof ReposPqrsOrgKarabinerElementsRoute
+  ReposRyanssennTorchlessRoute: typeof ReposRyanssennTorchlessRoute
+  ReposSamuiBuildSamuiWalletRoute: typeof ReposSamuiBuildSamuiWalletRoute
   DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
   DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
   DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
@@ -363,6 +417,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatMessagesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/repos/samui-build/samui-wallet': {
+      id: '/repos/samui-build/samui-wallet'
+      path: '/repos/samui-build/samui-wallet'
+      fullPath: '/repos/samui-build/samui-wallet'
+      preLoaderRoute: typeof ReposSamuiBuildSamuiWalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/ryanssenn/torchless': {
+      id: '/repos/ryanssenn/torchless'
+      path: '/repos/ryanssenn/torchless'
+      fullPath: '/repos/ryanssenn/torchless'
+      preLoaderRoute: typeof ReposRyanssennTorchlessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/repos/pqrs-org/Karabiner-Elements': {
       id: '/repos/pqrs-org/Karabiner-Elements'
       path: '/repos/pqrs-org/Karabiner-Elements'
@@ -375,6 +443,20 @@ declare module '@tanstack/react-router' {
       path: '/repos/karpathy/nanochat'
       fullPath: '/repos/karpathy/nanochat'
       preLoaderRoute: typeof ReposKarpathyNanochatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/garden-co/jazz': {
+      id: '/repos/garden-co/jazz'
+      path: '/repos/garden-co/jazz'
+      fullPath: '/repos/garden-co/jazz'
+      preLoaderRoute: typeof ReposGardenCoJazzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/earendil-works/absurd': {
+      id: '/repos/earendil-works/absurd'
+      path: '/repos/earendil-works/absurd'
+      fullPath: '/repos/earendil-works/absurd'
+      preLoaderRoute: typeof ReposEarendilWorksAbsurdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/papers/25/deepseek-v3-2': {
@@ -474,8 +556,12 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
+  ReposEarendilWorksAbsurdRoute: ReposEarendilWorksAbsurdRoute,
+  ReposGardenCoJazzRoute: ReposGardenCoJazzRoute,
   ReposKarpathyNanochatRoute: ReposKarpathyNanochatRoute,
   ReposPqrsOrgKarabinerElementsRoute: ReposPqrsOrgKarabinerElementsRoute,
+  ReposRyanssennTorchlessRoute: ReposRyanssennTorchlessRoute,
+  ReposSamuiBuildSamuiWalletRoute: ReposSamuiBuildSamuiWalletRoute,
   DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,

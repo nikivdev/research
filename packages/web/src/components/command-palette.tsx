@@ -16,6 +16,10 @@ export const pages: Page[] = [
   { name: "Karabiner-Elements", path: "/repos/pqrs-org/Karabiner-Elements", description: "macOS keyboard remapping deep dive" },
   { name: "Next-Action Prediction", path: "/research/how-to-train-model-to-recognize-next-action", description: "Train model to predict user's next action" },
   { name: "Effect", path: "/lib/effect", description: "TypeScript effect system deep dive" },
+  { name: "Torchless", path: "/repos/ryanssenn/torchless", description: "LLM inference engine in C++ from scratch" },
+  { name: "Samui Wallet", path: "/repos/samui-build/samui-wallet", description: "Solana wallet & toolbox for builders" },
+  { name: "Absurd", path: "/repos/earendil-works/absurd", description: "PostgreSQL-native durable execution workflows" },
+  { name: "Jazz", path: "/repos/garden-co/jazz", description: "Distributed sync-first database for local-first apps" },
 ]
 
 // Global function to open palette
