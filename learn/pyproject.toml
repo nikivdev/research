@@ -1,7 +1,0 @@
-[project]
-name = "learn"
-version = "0.1.0"
-description = "Learn fast"
-readme = "readme.md"
-requires-python = ">=3.13"
-dependencies = []
