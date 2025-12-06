@@ -17,14 +17,17 @@ import { Route as LibEffectRouteImport } from './routes/lib/effect'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
+import { Route as ReposTrycuaCuaRouteImport } from './routes/repos/trycua/cua'
 import { Route as ReposSamuiBuildSamuiWalletRouteImport } from './routes/repos/samui-build/samui-wallet'
 import { Route as ReposRyanssennTorchlessRouteImport } from './routes/repos/ryanssenn/torchless'
 import { Route as ReposPqrsOrgKarabinerElementsRouteImport } from './routes/repos/pqrs-org/Karabiner-Elements'
+import { Route as ReposMlExploreMlxRouteImport } from './routes/repos/ml-explore/mlx'
 import { Route as ReposKarpathyNanochatRouteImport } from './routes/repos/karpathy/nanochat'
 import { Route as ReposJaxMlJaxRouteImport } from './routes/repos/jax-ml/jax'
 import { Route as ReposGardenCoJazzRouteImport } from './routes/repos/garden-co/jazz'
 import { Route as ReposEarendilWorksAbsurdRouteImport } from './routes/repos/earendil-works/absurd'
 import { Route as ReposAnthropicsClaudeAgentSdkPythonRouteImport } from './routes/repos/anthropics/claude-agent-sdk-python'
+import { Route as ReposMizuhoAOKIJaxGenerativeModelsRouteImport } from './routes/repos/MizuhoAOKI/jax-generative-models'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -78,6 +81,11 @@ const ApiChatMessagesRoute = ApiChatMessagesRouteImport.update({
   path: '/api/chat-messages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReposTrycuaCuaRoute = ReposTrycuaCuaRouteImport.update({
+  id: '/repos/trycua/cua',
+  path: '/repos/trycua/cua',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReposSamuiBuildSamuiWalletRoute =
   ReposSamuiBuildSamuiWalletRouteImport.update({
     id: '/repos/samui-build/samui-wallet',
@@ -95,6 +103,11 @@ const ReposPqrsOrgKarabinerElementsRoute =
     path: '/repos/pqrs-org/Karabiner-Elements',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ReposMlExploreMlxRoute = ReposMlExploreMlxRouteImport.update({
+  id: '/repos/ml-explore/mlx',
+  path: '/repos/ml-explore/mlx',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReposKarpathyNanochatRoute = ReposKarpathyNanochatRouteImport.update({
   id: '/repos/karpathy/nanochat',
   path: '/repos/karpathy/nanochat',
@@ -120,6 +133,12 @@ const ReposAnthropicsClaudeAgentSdkPythonRoute =
   ReposAnthropicsClaudeAgentSdkPythonRouteImport.update({
     id: '/repos/anthropics/claude-agent-sdk-python',
     path: '/repos/anthropics/claude-agent-sdk-python',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ReposMizuhoAOKIJaxGenerativeModelsRoute =
+  ReposMizuhoAOKIJaxGenerativeModelsRouteImport.update({
+    id: '/repos/MizuhoAOKI/jax-generative-models',
+    path: '/repos/MizuhoAOKI/jax-generative-models',
     getParentRoute: () => rootRouteImport,
   } as any)
 const Papers25DeepseekV32Route = Papers25DeepseekV32RouteImport.update({
@@ -194,14 +213,17 @@ export interface FileRoutesByFullPath {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
+  '/repos/ml-explore/mlx': typeof ReposMlExploreMlxRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
   '/repos/samui-build/samui-wallet': typeof ReposSamuiBuildSamuiWalletRoute
+  '/repos/trycua/cua': typeof ReposTrycuaCuaRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -223,14 +245,17 @@ export interface FileRoutesByTo {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
+  '/repos/ml-explore/mlx': typeof ReposMlExploreMlxRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
   '/repos/samui-build/samui-wallet': typeof ReposSamuiBuildSamuiWalletRoute
+  '/repos/trycua/cua': typeof ReposTrycuaCuaRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -253,14 +278,17 @@ export interface FileRoutesById {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
+  '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
   '/repos/jax-ml/jax': typeof ReposJaxMlJaxRoute
   '/repos/karpathy/nanochat': typeof ReposKarpathyNanochatRoute
+  '/repos/ml-explore/mlx': typeof ReposMlExploreMlxRoute
   '/repos/pqrs-org/Karabiner-Elements': typeof ReposPqrsOrgKarabinerElementsRoute
   '/repos/ryanssenn/torchless': typeof ReposRyanssennTorchlessRoute
   '/repos/samui-build/samui-wallet': typeof ReposSamuiBuildSamuiWalletRoute
+  '/repos/trycua/cua': typeof ReposTrycuaCuaRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -284,14 +312,17 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/MizuhoAOKI/jax-generative-models'
     | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
     | '/repos/jax-ml/jax'
     | '/repos/karpathy/nanochat'
+    | '/repos/ml-explore/mlx'
     | '/repos/pqrs-org/Karabiner-Elements'
     | '/repos/ryanssenn/torchless'
     | '/repos/samui-build/samui-wallet'
+    | '/repos/trycua/cua'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -313,14 +344,17 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/MizuhoAOKI/jax-generative-models'
     | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
     | '/repos/jax-ml/jax'
     | '/repos/karpathy/nanochat'
+    | '/repos/ml-explore/mlx'
     | '/repos/pqrs-org/Karabiner-Elements'
     | '/repos/ryanssenn/torchless'
     | '/repos/samui-build/samui-wallet'
+    | '/repos/trycua/cua'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -342,14 +376,17 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
+    | '/repos/MizuhoAOKI/jax-generative-models'
     | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
     | '/repos/jax-ml/jax'
     | '/repos/karpathy/nanochat'
+    | '/repos/ml-explore/mlx'
     | '/repos/pqrs-org/Karabiner-Elements'
     | '/repos/ryanssenn/torchless'
     | '/repos/samui-build/samui-wallet'
+    | '/repos/trycua/cua'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -372,14 +409,17 @@ export interface RootRouteChildren {
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
+  ReposMizuhoAOKIJaxGenerativeModelsRoute: typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   ReposAnthropicsClaudeAgentSdkPythonRoute: typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   ReposEarendilWorksAbsurdRoute: typeof ReposEarendilWorksAbsurdRoute
   ReposGardenCoJazzRoute: typeof ReposGardenCoJazzRoute
   ReposJaxMlJaxRoute: typeof ReposJaxMlJaxRoute
   ReposKarpathyNanochatRoute: typeof ReposKarpathyNanochatRoute
+  ReposMlExploreMlxRoute: typeof ReposMlExploreMlxRoute
   ReposPqrsOrgKarabinerElementsRoute: typeof ReposPqrsOrgKarabinerElementsRoute
   ReposRyanssennTorchlessRoute: typeof ReposRyanssennTorchlessRoute
   ReposSamuiBuildSamuiWalletRoute: typeof ReposSamuiBuildSamuiWalletRoute
+  ReposTrycuaCuaRoute: typeof ReposTrycuaCuaRoute
   DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
   DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
   DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
@@ -444,6 +484,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatMessagesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/repos/trycua/cua': {
+      id: '/repos/trycua/cua'
+      path: '/repos/trycua/cua'
+      fullPath: '/repos/trycua/cua'
+      preLoaderRoute: typeof ReposTrycuaCuaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/repos/samui-build/samui-wallet': {
       id: '/repos/samui-build/samui-wallet'
       path: '/repos/samui-build/samui-wallet'
@@ -463,6 +510,13 @@ declare module '@tanstack/react-router' {
       path: '/repos/pqrs-org/Karabiner-Elements'
       fullPath: '/repos/pqrs-org/Karabiner-Elements'
       preLoaderRoute: typeof ReposPqrsOrgKarabinerElementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/ml-explore/mlx': {
+      id: '/repos/ml-explore/mlx'
+      path: '/repos/ml-explore/mlx'
+      fullPath: '/repos/ml-explore/mlx'
+      preLoaderRoute: typeof ReposMlExploreMlxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/repos/karpathy/nanochat': {
@@ -498,6 +552,13 @@ declare module '@tanstack/react-router' {
       path: '/repos/anthropics/claude-agent-sdk-python'
       fullPath: '/repos/anthropics/claude-agent-sdk-python'
       preLoaderRoute: typeof ReposAnthropicsClaudeAgentSdkPythonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repos/MizuhoAOKI/jax-generative-models': {
+      id: '/repos/MizuhoAOKI/jax-generative-models'
+      path: '/repos/MizuhoAOKI/jax-generative-models'
+      fullPath: '/repos/MizuhoAOKI/jax-generative-models'
+      preLoaderRoute: typeof ReposMizuhoAOKIJaxGenerativeModelsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/papers/25/deepseek-v3-2': {
@@ -597,15 +658,19 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
+  ReposMizuhoAOKIJaxGenerativeModelsRoute:
+    ReposMizuhoAOKIJaxGenerativeModelsRoute,
   ReposAnthropicsClaudeAgentSdkPythonRoute:
     ReposAnthropicsClaudeAgentSdkPythonRoute,
   ReposEarendilWorksAbsurdRoute: ReposEarendilWorksAbsurdRoute,
   ReposGardenCoJazzRoute: ReposGardenCoJazzRoute,
   ReposJaxMlJaxRoute: ReposJaxMlJaxRoute,
   ReposKarpathyNanochatRoute: ReposKarpathyNanochatRoute,
+  ReposMlExploreMlxRoute: ReposMlExploreMlxRoute,
   ReposPqrsOrgKarabinerElementsRoute: ReposPqrsOrgKarabinerElementsRoute,
   ReposRyanssennTorchlessRoute: ReposRyanssennTorchlessRoute,
   ReposSamuiBuildSamuiWalletRoute: ReposSamuiBuildSamuiWalletRoute,
+  ReposTrycuaCuaRoute: ReposTrycuaCuaRoute,
   DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,

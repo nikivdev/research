@@ -22,6 +22,9 @@ export const pages: Page[] = [
   { name: "Jazz", path: "/repos/garden-co/jazz", description: "Distributed sync-first database for local-first apps" },
   { name: "JAX", path: "/repos/jax-ml/jax", description: "Composable transformations for ML on accelerators" },
   { name: "Claude Agent SDK", path: "/repos/anthropics/claude-agent-sdk-python", description: "Official Python SDK for building AI agents" },
+  { name: "CUA", path: "/repos/trycua/cua", description: "Computer Use Agent - AI agents that control computers via vision" },
+  { name: "MLX", path: "/repos/ml-explore/mlx", description: "Apple's array framework for ML on Apple Silicon" },
+  { name: "JAX Generative Models", path: "/repos/MizuhoAOKI/jax-generative-models", description: "DDPM and Flow Matching in JAX from scratch" },
 ]
 
 // Global function to open palette
