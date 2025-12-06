@@ -1,31 +1,38 @@
 import * as React from "react"
 import { useNavigate } from "@tanstack/react-router"
+import { z } from "zod"
 
-export interface Page {
-  name: string
-  path: string
-  description?: string
-}
+export const PageSchema = z.object({
+  name: z.string().min(1),
+  path: z.string().startsWith("/"),
+  description: z.string().optional(),
+  addedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be in YYYY-MM-DD format"),
+})
 
-export const pages: Page[] = [
-  { name: "Home", path: "/", description: "Landing page" },
-  { name: "DeepSeek-V3.2", path: "/papers/25/deepseek-v3-2", description: "Paper explanation" },
-  { name: "Cloudflare", path: "/tech/cloudflare", description: "Cloudflare products overview" },
-  { name: "Electric SQL", path: "/tech/electric", description: "Real-time Postgres sync" },
-  { name: "NanoChat", path: "/repos/karpathy/nanochat", description: "Karpathy's full-stack LLM training" },
-  { name: "Karabiner-Elements", path: "/repos/pqrs-org/Karabiner-Elements", description: "macOS keyboard remapping deep dive" },
-  { name: "Next-Action Prediction", path: "/research/how-to-train-model-to-recognize-next-action", description: "Train model to predict user's next action" },
-  { name: "Effect", path: "/lib/effect", description: "TypeScript effect system deep dive" },
-  { name: "Torchless", path: "/repos/ryanssenn/torchless", description: "LLM inference engine in C++ from scratch" },
-  { name: "Samui Wallet", path: "/repos/samui-build/samui-wallet", description: "Solana wallet & toolbox for builders" },
-  { name: "Absurd", path: "/repos/earendil-works/absurd", description: "PostgreSQL-native durable execution workflows" },
-  { name: "Jazz", path: "/repos/garden-co/jazz", description: "Distributed sync-first database for local-first apps" },
-  { name: "JAX", path: "/repos/jax-ml/jax", description: "Composable transformations for ML on accelerators" },
-  { name: "Claude Agent SDK", path: "/repos/anthropics/claude-agent-sdk-python", description: "Official Python SDK for building AI agents" },
-  { name: "CUA", path: "/repos/trycua/cua", description: "Computer Use Agent - AI agents that control computers via vision" },
-  { name: "MLX", path: "/repos/ml-explore/mlx", description: "Apple's array framework for ML on Apple Silicon" },
-  { name: "JAX Generative Models", path: "/repos/MizuhoAOKI/jax-generative-models", description: "DDPM and Flow Matching in JAX from scratch" },
-]
+export type Page = z.infer<typeof PageSchema>
+
+const pagesData = [
+  { name: "Home", path: "/", description: "Landing page", addedAt: "2025-12-03" },
+  { name: "DeepSeek-V3.2", path: "/papers/25/deepseek-v3-2", description: "Paper explanation", addedAt: "2025-12-03" },
+  { name: "Cloudflare", path: "/tech/cloudflare", description: "Cloudflare products overview", addedAt: "2025-12-03" },
+  { name: "Electric SQL", path: "/tech/electric", description: "Real-time Postgres sync", addedAt: "2025-12-03" },
+  { name: "NanoChat", path: "/repos/karpathy/nanochat", description: "Karpathy's full-stack LLM training", addedAt: "2025-12-03" },
+  { name: "Karabiner-Elements", path: "/repos/pqrs-org/Karabiner-Elements", description: "macOS keyboard remapping deep dive", addedAt: "2025-12-03" },
+  { name: "Next-Action Prediction", path: "/research/how-to-train-model-to-recognize-next-action", description: "Train model to predict user's next action", addedAt: "2025-12-03" },
+  { name: "Effect", path: "/lib/effect", description: "TypeScript effect system deep dive", addedAt: "2025-12-03" },
+  { name: "Torchless", path: "/repos/ryanssenn/torchless", description: "LLM inference engine in C++ from scratch", addedAt: "2025-12-04" },
+  { name: "Samui Wallet", path: "/repos/samui-build/samui-wallet", description: "Solana wallet & toolbox for builders", addedAt: "2025-12-04" },
+  { name: "Absurd", path: "/repos/earendil-works/absurd", description: "PostgreSQL-native durable execution workflows", addedAt: "2025-12-04" },
+  { name: "Jazz", path: "/repos/garden-co/jazz", description: "Distributed sync-first database for local-first apps", addedAt: "2025-12-04" },
+  { name: "JAX", path: "/repos/jax-ml/jax", description: "Composable transformations for ML on accelerators", addedAt: "2025-12-04" },
+  { name: "Claude Agent SDK", path: "/repos/anthropics/claude-agent-sdk-python", description: "Official Python SDK for building AI agents", addedAt: "2025-12-04" },
+  { name: "CUA", path: "/repos/trycua/cua", description: "Computer Use Agent - AI agents that control computers via vision", addedAt: "2025-12-04" },
+  { name: "MLX", path: "/repos/ml-explore/mlx", description: "Apple's array framework for ML on Apple Silicon", addedAt: "2025-12-06" },
+  { name: "JAX Generative Models", path: "/repos/MizuhoAOKI/jax-generative-models", description: "DDPM and Flow Matching in JAX from scratch", addedAt: "2025-12-06" },
+] satisfies Page[]
+
+// Validate all pages at build time - will throw if any page is invalid
+export const pages: Page[] = pagesData.map((page) => PageSchema.parse(page))
 
 // Global function to open palette
 let openPaletteFn: (() => void) | null = null

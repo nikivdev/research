@@ -1,6 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router"
 import { pages, openCommandPalette } from "../components/command-palette"
 
+function formatRelativeDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  const now = new Date()
+  const diffMs = now.getTime() - date.getTime()
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (diffDays === 0) return "today"
+  if (diffDays === 1) return "1 day ago"
+  if (diffDays < 7) return `${diffDays} days ago`
+  if (diffDays < 14) return "1 week ago"
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`
+  if (diffDays < 60) return "1 month ago"
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`
+  if (diffDays < 730) return "1 year ago"
+  return `${Math.floor(diffDays / 365)} years ago`
+}
+
 export const Route = createFileRoute("/")({
   component: HomePage,
 })
@@ -54,9 +71,14 @@ function HomePage() {
                   <PageIcon path={page.path} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h2 className="font-semibold text-slate-900 group-hover:text-slate-700 transition-colors dark:text-slate-100 dark:group-hover:text-white">
-                    {page.name}
-                  </h2>
+                  <div className="flex items-center justify-between gap-2">
+                    <h2 className="font-semibold text-slate-900 group-hover:text-slate-700 transition-colors dark:text-slate-100 dark:group-hover:text-white">
+                      {page.name}
+                    </h2>
+                    <span className="text-xs text-slate-400 dark:text-slate-600">
+                      {formatRelativeDate(page.addedAt)}
+                    </span>
+                  </div>
                   {page.description && (
                     <p className="text-sm text-slate-600 mt-1 dark:text-slate-400">
                       {page.description}
