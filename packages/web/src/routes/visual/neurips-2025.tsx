@@ -78,6 +78,7 @@ function NeurIPS2025Page() {
   const [selectedResultIndex, setSelectedResultIndex] = useState(0)
   const searchDbRef = useRef<Orama<any> | null>(null)
   const searchContainerRef = useRef<HTMLDivElement>(null)
+  const searchResultsRef = useRef<HTMLDivElement>(null)
 
   // Three.js refs
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -504,10 +505,32 @@ function NeurIPS2025Page() {
               if (!showSearchResults || searchResults.length === 0) return
               if (e.key === "ArrowDown") {
                 e.preventDefault()
-                setSelectedResultIndex((i) => Math.min(i + 1, searchResults.length - 1))
+                setSelectedResultIndex((i) => {
+                  const newIndex = Math.min(i + 1, searchResults.length - 1)
+                  const container = searchResultsRef.current
+                  const item = container?.children[newIndex] as HTMLElement
+                  if (item && container) {
+                    const itemBottom = item.offsetTop + item.offsetHeight
+                    const containerBottom = container.scrollTop + container.offsetHeight
+                    if (itemBottom > containerBottom) {
+                      container.scrollTop = itemBottom - container.offsetHeight
+                    }
+                  }
+                  return newIndex
+                })
               } else if (e.key === "ArrowUp") {
                 e.preventDefault()
-                setSelectedResultIndex((i) => Math.max(i - 1, 0))
+                setSelectedResultIndex((i) => {
+                  const newIndex = Math.max(i - 1, 0)
+                  const container = searchResultsRef.current
+                  const item = container?.children[newIndex] as HTMLElement
+                  if (item && container) {
+                    if (item.offsetTop < container.scrollTop) {
+                      container.scrollTop = item.offsetTop
+                    }
+                  }
+                  return newIndex
+                })
               } else if (e.key === "Enter") {
                 e.preventDefault()
                 const paper = searchResults[selectedResultIndex]
@@ -552,7 +575,7 @@ function NeurIPS2025Page() {
 
         {/* Search Results Dropdown */}
         {showSearchResults && searchResults.length > 0 && (
-          <div className="mt-2 bg-black rounded-lg border border-white/20 max-h-96 overflow-y-auto">
+          <div ref={searchResultsRef} className="mt-2 bg-black rounded-lg border border-white/20 max-h-96 overflow-y-auto">
             {searchResults.map((paper, index) => (
               <button
                 key={paper.id}
