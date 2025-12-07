@@ -92,9 +92,26 @@ function NeurIPS2025Page() {
     target: 80,
   })
 
-  // Fetch papers
+  // Fetch papers (with localStorage cache)
   useEffect(() => {
+    const CACHE_KEY = "neurips-2025-papers"
+
     async function fetchPapers() {
+      // Try loading from cache first
+      const cached = localStorage.getItem(CACHE_KEY)
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached)
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setPapers(parsed)
+            setLoading(false)
+            return
+          }
+        } catch {
+          // Invalid cache, continue to fetch
+        }
+      }
+
       try {
         const response = await fetch("/api/papers")
         if (!response.ok) {
@@ -105,6 +122,8 @@ function NeurIPS2025Page() {
           throw new Error("Invalid response format")
         }
         setPapers(json.data)
+        // Cache the result
+        localStorage.setItem(CACHE_KEY, JSON.stringify(json.data))
       } catch (err) {
         console.error("Failed to fetch papers:", err)
         setError(err instanceof Error ? err.message : "Failed to fetch papers")
