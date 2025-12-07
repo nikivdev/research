@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { getEvent } from "@tanstack/react-start/server"
+import { getContext } from "vinxi/http"
 
 export const Route = createFileRoute("/api/papers")({
   server: {
     handlers: {
       GET: async () => {
-        // Get token from Cloudflare env (via event context) or process.env
+        // Get token from Cloudflare env (via vinxi context) or process.env
         let token: string | undefined
         try {
-          const event = getEvent()
-          token = (event?.context?.cloudflare?.env as Record<string, string>)?.LA_API_TOKEN
+          const cf = getContext("cloudflare") as { env?: Record<string, string> } | undefined
+          token = cf?.env?.LA_API_TOKEN
         } catch {
-          // Not in event context
+          // Not in cloudflare context
         }
         token = token || process.env.LA_API_TOKEN
 
