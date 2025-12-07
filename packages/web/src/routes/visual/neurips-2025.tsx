@@ -68,6 +68,7 @@ function NeurIPS2025Page() {
   const [error, setError] = useState<string | null>(null)
   const [hoveredPaper, setHoveredPaper] = useState<Paper | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
+  const hoveredPaperRef = useRef<Paper | null>(null)
 
   // Three.js refs
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -331,10 +332,13 @@ function NeurIPS2025Page() {
 
         if (intersects.length > 0) {
           const index = intersects[0].index!
-          setHoveredPaper(papers[index])
+          const paper = papers[index]
+          setHoveredPaper(paper)
+          hoveredPaperRef.current = paper
           setTooltipPos({ x: e.clientX, y: e.clientY })
         } else {
           setHoveredPaper(null)
+          hoveredPaperRef.current = null
         }
       }
     }
@@ -349,8 +353,8 @@ function NeurIPS2025Page() {
     }
 
     const onClick = () => {
-      if (hoveredPaper?.siteUrl) {
-        window.open(hoveredPaper.siteUrl, "_blank")
+      if (hoveredPaperRef.current?.siteUrl) {
+        window.open(hoveredPaperRef.current.siteUrl, "_blank")
       }
     }
 
