@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { getContext } from "vinxi/http"
+
+function getApiToken(): string | undefined {
+  // Try Cloudflare Workers context first (production)
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getServerContext } = require("@tanstack/react-start/server")
+    const ctx = getServerContext()
+    if (ctx?.cloudflare?.env?.LA_API_TOKEN) {
+      return ctx.cloudflare.env.LA_API_TOKEN as string
+    }
+  } catch {
+    // Not in Cloudflare context
+  }
+  // Fall back to process.env (local dev)
+  return process.env.LA_API_TOKEN
+}
 
 export const Route = createFileRoute("/api/papers")({
   server: {
     handlers: {
       GET: async () => {
-        // Get token from Cloudflare env (via vinxi context) or process.env
-        let token: string | undefined
-        try {
-          const cf = getContext("cloudflare") as { env?: Record<string, string> } | undefined
-          token = cf?.env?.LA_API_TOKEN
-        } catch {
-          // Not in cloudflare context
-        }
-        token = token || process.env.LA_API_TOKEN
+        const token = getApiToken()
 
         if (!token) {
           return new Response(JSON.stringify({ error: "API token not configured" }), {
