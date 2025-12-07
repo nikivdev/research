@@ -1,25 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router"
-
-function getToken(): string | undefined {
-  // Try Cloudflare Workers context first (production)
-  try {
-    const { getServerContext } = require("@tanstack/react-start/server")
-    const ctx = getServerContext()
-    if (ctx?.cloudflare?.env?.LA_API_TOKEN) {
-      return ctx.cloudflare.env.LA_API_TOKEN
-    }
-  } catch {
-    // Not in Cloudflare context
-  }
-  // Fall back to process.env (local dev)
-  return process.env.LA_API_TOKEN
-}
+import { getEvent } from "@tanstack/react-start/server"
 
 export const Route = createFileRoute("/api/papers")({
   server: {
     handlers: {
       GET: async () => {
-        const token = getToken()
+        // Get token from Cloudflare env (via event context) or process.env
+        let token: string | undefined
+        try {
+          const event = getEvent()
+          token = (event?.context?.cloudflare?.env as Record<string, string>)?.LA_API_TOKEN
+        } catch {
+          // Not in event context
+        }
+        token = token || process.env.LA_API_TOKEN
 
         if (!token) {
           return new Response(JSON.stringify({ error: "API token not configured" }), {
