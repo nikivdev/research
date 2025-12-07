@@ -413,6 +413,24 @@ function NeurIPS2025Page() {
         <p>Drag to pan • Scroll to zoom • Click paper to open</p>
       </div>
 
+      {/* Legend */}
+      <div className="absolute bottom-4 right-4 z-10 bg-black rounded-lg p-3 text-xs max-h-[60vh] overflow-y-auto">
+        <div className="text-white/80 font-medium mb-2">Research Areas</div>
+        <div className="space-y-1">
+          {Object.entries(areaColors).map(([area, color]) => (
+            <div key={area} className="flex items-center gap-2">
+              <div
+                className="w-3 h-3 rounded-full"
+                style={{ backgroundColor: `#${color.toString(16).padStart(6, "0")}` }}
+              />
+              <span className="text-white/60 capitalize">
+                {area.replace(/_/g, " ")}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Tooltip */}
       {hoveredPaper && (
         <div
