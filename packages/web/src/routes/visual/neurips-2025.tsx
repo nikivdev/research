@@ -92,24 +92,56 @@ function NeurIPS2025Page() {
     target: 80,
   })
 
-  // Fetch papers (with localStorage cache)
+  // Fetch papers (with IndexedDB cache)
   useEffect(() => {
-    const CACHE_KEY = "neurips-2025-papers"
+    const DB_NAME = "neurips-cache"
+    const STORE_NAME = "papers"
+    const CACHE_KEY = "neurips-2025"
+
+    async function openDb(): Promise<IDBDatabase> {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, 1)
+        request.onerror = () => reject(request.error)
+        request.onsuccess = () => resolve(request.result)
+        request.onupgradeneeded = () => {
+          request.result.createObjectStore(STORE_NAME)
+        }
+      })
+    }
+
+    async function getFromCache(): Promise<Paper[] | null> {
+      try {
+        const db = await openDb()
+        return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, "readonly")
+          const store = tx.objectStore(STORE_NAME)
+          const request = store.get(CACHE_KEY)
+          request.onsuccess = () => resolve(request.result || null)
+          request.onerror = () => resolve(null)
+        })
+      } catch {
+        return null
+      }
+    }
+
+    async function saveToCache(data: Paper[]): Promise<void> {
+      try {
+        const db = await openDb()
+        const tx = db.transaction(STORE_NAME, "readwrite")
+        const store = tx.objectStore(STORE_NAME)
+        store.put(data, CACHE_KEY)
+      } catch {
+        // Ignore cache errors
+      }
+    }
 
     async function fetchPapers() {
       // Try loading from cache first
-      const cached = localStorage.getItem(CACHE_KEY)
-      if (cached) {
-        try {
-          const parsed = JSON.parse(cached)
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setPapers(parsed)
-            setLoading(false)
-            return
-          }
-        } catch {
-          // Invalid cache, continue to fetch
-        }
+      const cached = await getFromCache()
+      if (cached && cached.length > 0) {
+        setPapers(cached)
+        setLoading(false)
+        return
       }
 
       try {
@@ -123,7 +155,7 @@ function NeurIPS2025Page() {
         }
         setPapers(json.data)
         // Cache the result
-        localStorage.setItem(CACHE_KEY, JSON.stringify(json.data))
+        await saveToCache(json.data)
       } catch (err) {
         console.error("Failed to fetch papers:", err)
         setError(err instanceof Error ? err.message : "Failed to fetch papers")
