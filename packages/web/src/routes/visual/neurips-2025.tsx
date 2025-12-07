@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 import * as THREE from "three"
 import normalizeWheel from "normalize-wheel"
+import { create, insertMultiple, search, type Orama } from "@orama/orama"
 
 export const Route = createFileRoute("/visual/neurips-2025")({
   component: NeurIPS2025Page,
@@ -69,6 +70,14 @@ function NeurIPS2025Page() {
   const [hoveredPaper, setHoveredPaper] = useState<Paper | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
   const hoveredPaperRef = useRef<Paper | null>(null)
+
+  // Search state
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResults, setSearchResults] = useState<Paper[]>([])
+  const [showSearchResults, setShowSearchResults] = useState(false)
+  const [selectedResultIndex, setSelectedResultIndex] = useState(0)
+  const searchDbRef = useRef<Orama<any> | null>(null)
+  const searchContainerRef = useRef<HTMLDivElement>(null)
 
   // Three.js refs
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -165,6 +174,81 @@ function NeurIPS2025Page() {
       }
     }
     fetchPapers()
+  }, [])
+
+  // Initialize Orama search index
+  useEffect(() => {
+    if (papers.length === 0) return
+
+    async function initSearchIndex() {
+      const db = await create({
+        schema: {
+          paperId: "number",
+          title: "string",
+          abstract: "string",
+          authors: "string",
+          keywords: "string",
+          primaryArea: "string",
+          status: "string",
+          affiliations: "string",
+        },
+      })
+
+      const docs = papers.map((paper) => ({
+        paperId: paper.id,
+        title: paper.title || "",
+        abstract: paper.abstract || "",
+        authors: paper.authors || "",
+        keywords: paper.keywords || "",
+        primaryArea: paper.primaryArea || "",
+        status: paper.status || "",
+        affiliations: paper.affiliations || "",
+      }))
+
+      await insertMultiple(db, docs)
+      searchDbRef.current = db
+    }
+
+    initSearchIndex()
+  }, [papers])
+
+  // Handle search
+  useEffect(() => {
+    if (!searchQuery.trim() || !searchDbRef.current) {
+      setSearchResults([])
+      setShowSearchResults(false)
+      return
+    }
+
+    async function performSearch() {
+      const results = await search(searchDbRef.current!, {
+        term: searchQuery,
+        limit: 20,
+        tolerance: 1,
+      })
+
+      const matchedPapers = results.hits.map((hit) => {
+        return papers.find((p) => p.id === (hit.document as { paperId: number }).paperId)!
+      }).filter(Boolean)
+
+      setSearchResults(matchedPapers)
+      setSelectedResultIndex(0)
+      setShowSearchResults(true)
+    }
+
+    const debounce = setTimeout(performSearch, 150)
+    return () => clearTimeout(debounce)
+  }, [searchQuery, papers])
+
+  // Close search results on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
+        setShowSearchResults(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
   // Initialize Three.js
@@ -406,6 +490,113 @@ function NeurIPS2025Page() {
         <p className="text-sm text-white/60">
           {loading ? "Loading papers..." : `${papers.length.toLocaleString()} papers`}
         </p>
+      </div>
+
+      {/* Search */}
+      <div ref={searchContainerRef} className="absolute top-4 right-16 z-20 w-80">
+        <div className="relative">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => searchQuery && setShowSearchResults(true)}
+            onKeyDown={(e) => {
+              if (!showSearchResults || searchResults.length === 0) return
+              if (e.key === "ArrowDown") {
+                e.preventDefault()
+                setSelectedResultIndex((i) => Math.min(i + 1, searchResults.length - 1))
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault()
+                setSelectedResultIndex((i) => Math.max(i - 1, 0))
+              } else if (e.key === "Enter") {
+                e.preventDefault()
+                const paper = searchResults[selectedResultIndex]
+                if (paper?.siteUrl) {
+                  window.open(paper.siteUrl, "_blank")
+                }
+              } else if (e.key === "Escape") {
+                setShowSearchResults(false)
+              }
+            }}
+            placeholder="Search papers, authors, keywords..."
+            className="w-full px-4 py-2 pl-10 bg-black/80 text-white placeholder-white/40 rounded-lg border border-white/20 focus:border-white/40 focus:outline-none text-sm"
+            autoFocus
+          />
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          {searchQuery && (
+            <button
+              onClick={() => {
+                setSearchQuery("")
+                setShowSearchResults(false)
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+
+        {/* Search Results Dropdown */}
+        {showSearchResults && searchResults.length > 0 && (
+          <div className="mt-2 bg-black rounded-lg border border-white/20 max-h-96 overflow-y-auto">
+            {searchResults.map((paper, index) => (
+              <button
+                key={paper.id}
+                onClick={() => {
+                  if (paper.siteUrl) {
+                    window.open(paper.siteUrl, "_blank")
+                  }
+                }}
+                onMouseEnter={() => setSelectedResultIndex(index)}
+                className={`w-full px-4 py-3 text-left border-b border-white/10 last:border-b-0 ${
+                  index === selectedResultIndex ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <div className="text-sm text-white font-medium line-clamp-2">{paper.title}</div>
+                <div className="text-xs text-white/50 mt-1">
+                  {parseAuthors(paper.authors).slice(0, 2).join(", ")}
+                  {parseAuthors(paper.authors).length > 2 && " et al."}
+                </div>
+                <div className="flex gap-2 mt-1">
+                  <span
+                    className="text-xs px-1.5 py-0.5 rounded"
+                    style={{
+                      backgroundColor: `#${(areaColors[paper.primaryArea || ""] || 0x888888).toString(16).padStart(6, "0")}`,
+                      color: "white",
+                    }}
+                  >
+                    {paper.primaryArea?.replace(/_/g, " ") || "N/A"}
+                  </span>
+                  {paper.status && (
+                    <span className="text-xs px-1.5 py-0.5 bg-white/20 rounded text-white/70">
+                      {paper.status}
+                    </span>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {showSearchResults && searchQuery && searchResults.length === 0 && (
+          <div className="mt-2 bg-black rounded-lg border border-white/20 px-4 py-3 text-white/50 text-sm">
+            No papers found for "{searchQuery}"
+          </div>
+        )}
       </div>
 
       {/* Instructions */}
