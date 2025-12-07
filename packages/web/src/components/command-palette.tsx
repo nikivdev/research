@@ -29,6 +29,7 @@ const pagesData = [
   { name: "CUA", path: "/repos/trycua/cua", description: "Computer Use Agent - AI agents that control computers via vision", addedAt: "2025-12-04" },
   { name: "MLX", path: "/repos/ml-explore/mlx", description: "Apple's array framework for ML on Apple Silicon", addedAt: "2025-12-06" },
   { name: "JAX Generative Models", path: "/repos/MizuhoAOKI/jax-generative-models", description: "DDPM and Flow Matching in JAX from scratch", addedAt: "2025-12-06" },
+  { name: "NeurIPS 2025", path: "/visual/neurips-2025", description: "6,000+ papers visualized by research area", addedAt: "2025-12-07" },
 ] satisfies Page[]
 
 // Validate all pages at build time - will throw if any page is invalid

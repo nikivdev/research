@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VisualNeurips2025RouteImport } from './routes/visual/neurips-2025'
 import { Route as TechElectricRouteImport } from './routes/tech/electric'
 import { Route as TechCloudflareRouteImport } from './routes/tech/cloudflare'
 import { Route as ResearchHowToTrainModelToRecognizeNextActionRouteImport } from './routes/research/how-to-train-model-to-recognize-next-action'
 import { Route as LibEffectRouteImport } from './routes/lib/effect'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
+import { Route as ApiPapersRouteImport } from './routes/api/papers'
 import { Route as ApiChatThreadsRouteImport } from './routes/api/chat-threads'
 import { Route as ApiChatMessagesRouteImport } from './routes/api/chat-messages'
 import { Route as ReposTrycuaCuaRouteImport } from './routes/repos/trycua/cua'
@@ -45,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisualNeurips2025Route = VisualNeurips2025RouteImport.update({
+  id: '/visual/neurips-2025',
+  path: '/visual/neurips-2025',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TechElectricRoute = TechElectricRouteImport.update({
   id: '/tech/electric',
   path: '/tech/electric',
@@ -69,6 +76,11 @@ const LibEffectRoute = LibEffectRouteImport.update({
 const ApiUsersRoute = ApiUsersRouteImport.update({
   id: '/api/users',
   path: '/api/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPapersRoute = ApiPapersRouteImport.update({
+  id: '/api/papers',
+  path: '/api/papers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatThreadsRoute = ApiChatThreadsRouteImport.update({
@@ -201,11 +213,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
+  '/api/papers': typeof ApiPapersRoute
   '/api/users': typeof ApiUsersRoute
   '/lib/effect': typeof LibEffectRoute
   '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
+  '/visual/neurips-2025': typeof VisualNeurips2025Route
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/chat/ai': typeof ApiChatAiRoute
   '/api/chat/mutations': typeof ApiChatMutationsRoute
@@ -233,11 +247,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
+  '/api/papers': typeof ApiPapersRoute
   '/api/users': typeof ApiUsersRoute
   '/lib/effect': typeof LibEffectRoute
   '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
+  '/visual/neurips-2025': typeof VisualNeurips2025Route
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/chat/ai': typeof ApiChatAiRoute
   '/api/chat/mutations': typeof ApiChatMutationsRoute
@@ -266,11 +282,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/api/chat-messages': typeof ApiChatMessagesRoute
   '/api/chat-threads': typeof ApiChatThreadsRoute
+  '/api/papers': typeof ApiPapersRoute
   '/api/users': typeof ApiUsersRoute
   '/lib/effect': typeof LibEffectRoute
   '/research/how-to-train-model-to-recognize-next-action': typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   '/tech/cloudflare': typeof TechCloudflareRoute
   '/tech/electric': typeof TechElectricRoute
+  '/visual/neurips-2025': typeof VisualNeurips2025Route
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/chat/ai': typeof ApiChatAiRoute
   '/api/chat/mutations': typeof ApiChatMutationsRoute
@@ -300,11 +318,13 @@ export interface FileRouteTypes {
     | '/'
     | '/api/chat-messages'
     | '/api/chat-threads'
+    | '/api/papers'
     | '/api/users'
     | '/lib/effect'
     | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
+    | '/visual/neurips-2025'
     | '/api/auth/$'
     | '/api/chat/ai'
     | '/api/chat/mutations'
@@ -332,11 +352,13 @@ export interface FileRouteTypes {
     | '/'
     | '/api/chat-messages'
     | '/api/chat-threads'
+    | '/api/papers'
     | '/api/users'
     | '/lib/effect'
     | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
+    | '/visual/neurips-2025'
     | '/api/auth/$'
     | '/api/chat/ai'
     | '/api/chat/mutations'
@@ -364,11 +386,13 @@ export interface FileRouteTypes {
     | '/'
     | '/api/chat-messages'
     | '/api/chat-threads'
+    | '/api/papers'
     | '/api/users'
     | '/lib/effect'
     | '/research/how-to-train-model-to-recognize-next-action'
     | '/tech/cloudflare'
     | '/tech/electric'
+    | '/visual/neurips-2025'
     | '/api/auth/$'
     | '/api/chat/ai'
     | '/api/chat/mutations'
@@ -397,11 +421,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiChatMessagesRoute: typeof ApiChatMessagesRoute
   ApiChatThreadsRoute: typeof ApiChatThreadsRoute
+  ApiPapersRoute: typeof ApiPapersRoute
   ApiUsersRoute: typeof ApiUsersRoute
   LibEffectRoute: typeof LibEffectRoute
   ResearchHowToTrainModelToRecognizeNextActionRoute: typeof ResearchHowToTrainModelToRecognizeNextActionRoute
   TechCloudflareRoute: typeof TechCloudflareRoute
   TechElectricRoute: typeof TechElectricRoute
+  VisualNeurips2025Route: typeof VisualNeurips2025Route
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiChatAiRoute: typeof ApiChatAiRoute
   ApiChatMutationsRoute: typeof ApiChatMutationsRoute
@@ -433,6 +459,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/visual/neurips-2025': {
+      id: '/visual/neurips-2025'
+      path: '/visual/neurips-2025'
+      fullPath: '/visual/neurips-2025'
+      preLoaderRoute: typeof VisualNeurips2025RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tech/electric': {
@@ -468,6 +501,13 @@ declare module '@tanstack/react-router' {
       path: '/api/users'
       fullPath: '/api/users'
       preLoaderRoute: typeof ApiUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/papers': {
+      id: '/api/papers'
+      path: '/api/papers'
+      fullPath: '/api/papers'
+      preLoaderRoute: typeof ApiPapersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat-threads': {
@@ -645,12 +685,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiChatMessagesRoute: ApiChatMessagesRoute,
   ApiChatThreadsRoute: ApiChatThreadsRoute,
+  ApiPapersRoute: ApiPapersRoute,
   ApiUsersRoute: ApiUsersRoute,
   LibEffectRoute: LibEffectRoute,
   ResearchHowToTrainModelToRecognizeNextActionRoute:
     ResearchHowToTrainModelToRecognizeNextActionRoute,
   TechCloudflareRoute: TechCloudflareRoute,
   TechElectricRoute: TechElectricRoute,
+  VisualNeurips2025Route: VisualNeurips2025Route,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiChatAiRoute: ApiChatAiRoute,
   ApiChatMutationsRoute: ApiChatMutationsRoute,

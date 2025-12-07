@@ -9,6 +9,8 @@ declare module "cloudflare:workers" {
   interface Env {
     // Service binding to the worker RPC
     WORKER_RPC: Service<WorkerRpc>
+    // API token for LA server
+    LA_API_TOKEN: string
   }
 }
 

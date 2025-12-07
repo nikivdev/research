@@ -27,12 +27,10 @@
 	/**
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+	 * Note: LA_API_TOKEN should be set as a secret in Cloudflare dashboard, not here.
+	 * For local dev, create a .dev.vars file with: LA_API_TOKEN=your-token
 	 */
 	// "vars": { "MY_VARIABLE": "production_value" }
-	/**
-	 * Note: Use secrets to store sensitive data.
-	 * https://developers.cloudflare.com/workers/configuration/secrets/
-	 */
 	/**
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
