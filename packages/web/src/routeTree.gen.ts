@@ -29,6 +29,7 @@ import { Route as ReposJaxMlJaxRouteImport } from './routes/repos/jax-ml/jax'
 import { Route as ReposGardenCoJazzRouteImport } from './routes/repos/garden-co/jazz'
 import { Route as ReposEarendilWorksAbsurdRouteImport } from './routes/repos/earendil-works/absurd'
 import { Route as ReposAnthropicsClaudeAgentSdkPythonRouteImport } from './routes/repos/anthropics/claude-agent-sdk-python'
+import { Route as ReposSmerityShaRnnRouteImport } from './routes/repos/Smerity/sha-rnn'
 import { Route as ReposMizuhoAOKIJaxGenerativeModelsRouteImport } from './routes/repos/MizuhoAOKI/jax-generative-models'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
@@ -147,6 +148,11 @@ const ReposAnthropicsClaudeAgentSdkPythonRoute =
     path: '/repos/anthropics/claude-agent-sdk-python',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ReposSmerityShaRnnRoute = ReposSmerityShaRnnRouteImport.update({
+  id: '/repos/Smerity/sha-rnn',
+  path: '/repos/Smerity/sha-rnn',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReposMizuhoAOKIJaxGenerativeModelsRoute =
   ReposMizuhoAOKIJaxGenerativeModelsRouteImport.update({
     id: '/repos/MizuhoAOKI/jax-generative-models',
@@ -228,6 +234,7 @@ export interface FileRoutesByFullPath {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
+  '/repos/Smerity/sha-rnn': typeof ReposSmerityShaRnnRoute
   '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
@@ -262,6 +269,7 @@ export interface FileRoutesByTo {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
+  '/repos/Smerity/sha-rnn': typeof ReposSmerityShaRnnRoute
   '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
@@ -297,6 +305,7 @@ export interface FileRoutesById {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
+  '/repos/Smerity/sha-rnn': typeof ReposSmerityShaRnnRoute
   '/repos/anthropics/claude-agent-sdk-python': typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   '/repos/earendil-works/absurd': typeof ReposEarendilWorksAbsurdRoute
   '/repos/garden-co/jazz': typeof ReposGardenCoJazzRoute
@@ -333,6 +342,7 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
     | '/repos/MizuhoAOKI/jax-generative-models'
+    | '/repos/Smerity/sha-rnn'
     | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
@@ -367,6 +377,7 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
     | '/repos/MizuhoAOKI/jax-generative-models'
+    | '/repos/Smerity/sha-rnn'
     | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
@@ -401,6 +412,7 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/papers/25/deepseek-v3-2'
     | '/repos/MizuhoAOKI/jax-generative-models'
+    | '/repos/Smerity/sha-rnn'
     | '/repos/anthropics/claude-agent-sdk-python'
     | '/repos/earendil-works/absurd'
     | '/repos/garden-co/jazz'
@@ -436,6 +448,7 @@ export interface RootRouteChildren {
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
   ReposMizuhoAOKIJaxGenerativeModelsRoute: typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
+  ReposSmerityShaRnnRoute: typeof ReposSmerityShaRnnRoute
   ReposAnthropicsClaudeAgentSdkPythonRoute: typeof ReposAnthropicsClaudeAgentSdkPythonRoute
   ReposEarendilWorksAbsurdRoute: typeof ReposEarendilWorksAbsurdRoute
   ReposGardenCoJazzRoute: typeof ReposGardenCoJazzRoute
@@ -594,6 +607,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReposAnthropicsClaudeAgentSdkPythonRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/repos/Smerity/sha-rnn': {
+      id: '/repos/Smerity/sha-rnn'
+      path: '/repos/Smerity/sha-rnn'
+      fullPath: '/repos/Smerity/sha-rnn'
+      preLoaderRoute: typeof ReposSmerityShaRnnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/repos/MizuhoAOKI/jax-generative-models': {
       id: '/repos/MizuhoAOKI/jax-generative-models'
       path: '/repos/MizuhoAOKI/jax-generative-models'
@@ -702,6 +722,7 @@ const rootRouteChildren: RootRouteChildren = {
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
   ReposMizuhoAOKIJaxGenerativeModelsRoute:
     ReposMizuhoAOKIJaxGenerativeModelsRoute,
+  ReposSmerityShaRnnRoute: ReposSmerityShaRnnRoute,
   ReposAnthropicsClaudeAgentSdkPythonRoute:
     ReposAnthropicsClaudeAgentSdkPythonRoute,
   ReposEarendilWorksAbsurdRoute: ReposEarendilWorksAbsurdRoute,
