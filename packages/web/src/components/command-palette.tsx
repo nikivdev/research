@@ -30,6 +30,7 @@ const pagesData = [
   { name: "MLX", path: "/repos/ml-explore/mlx", description: "Apple's array framework for ML on Apple Silicon", addedAt: "2025-12-06" },
   { name: "JAX Generative Models", path: "/repos/MizuhoAOKI/jax-generative-models", description: "DDPM and Flow Matching in JAX from scratch", addedAt: "2025-12-06" },
   { name: "NeurIPS 2025", path: "/visual/neurips-2025", description: "6,000+ papers visualized by research area", addedAt: "2025-12-07" },
+  { name: "SHA-RNN", path: "/repos/Smerity/sha-rnn", description: "Single-head attention RNN that rivals Transformers on 1 GPU", addedAt: "2025-12-08" },
 ] satisfies Page[]
 
 // Validate all pages at build time - will throw if any page is invalid
