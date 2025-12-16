@@ -117,5 +117,8 @@ function PageIcon({ path }: { path: string }) {
   if (path.startsWith("/visual")) {
     return <span className="text-lg">🎨</span>
   }
+  if (path.startsWith("/explain")) {
+    return <span className="text-lg">🧩</span>
+  }
   return <span className="text-lg">📝</span>
 }

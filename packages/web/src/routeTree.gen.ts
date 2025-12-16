@@ -32,6 +32,7 @@ import { Route as ReposAnthropicsClaudeAgentSdkPythonRouteImport } from './route
 import { Route as ReposSmerityShaRnnRouteImport } from './routes/repos/Smerity/sha-rnn'
 import { Route as ReposMizuhoAOKIJaxGenerativeModelsRouteImport } from './routes/repos/MizuhoAOKI/jax-generative-models'
 import { Route as Papers25DeepseekV32RouteImport } from './routes/papers/25/deepseek-v3-2'
+import { Route as ExplainMlTransformerRouteImport } from './routes/explain/ml/transformer'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
@@ -164,6 +165,11 @@ const Papers25DeepseekV32Route = Papers25DeepseekV32RouteImport.update({
   path: '/papers/25/deepseek-v3-2',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExplainMlTransformerRoute = ExplainMlTransformerRouteImport.update({
+  id: '/explain/ml/transformer',
+  path: '/explain/ml/transformer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
   id: '/demo/start/server-funcs',
   path: '/demo/start/server-funcs',
@@ -232,6 +238,7 @@ export interface FileRoutesByFullPath {
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/explain/ml/transformer': typeof ExplainMlTransformerRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   '/repos/Smerity/sha-rnn': typeof ReposSmerityShaRnnRoute
@@ -267,6 +274,7 @@ export interface FileRoutesByTo {
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/explain/ml/transformer': typeof ExplainMlTransformerRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   '/repos/Smerity/sha-rnn': typeof ReposSmerityShaRnnRoute
@@ -303,6 +311,7 @@ export interface FileRoutesById {
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/explain/ml/transformer': typeof ExplainMlTransformerRoute
   '/papers/25/deepseek-v3-2': typeof Papers25DeepseekV32Route
   '/repos/MizuhoAOKI/jax-generative-models': typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   '/repos/Smerity/sha-rnn': typeof ReposSmerityShaRnnRoute
@@ -340,6 +349,7 @@ export interface FileRouteTypes {
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/explain/ml/transformer'
     | '/papers/25/deepseek-v3-2'
     | '/repos/MizuhoAOKI/jax-generative-models'
     | '/repos/Smerity/sha-rnn'
@@ -375,6 +385,7 @@ export interface FileRouteTypes {
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/explain/ml/transformer'
     | '/papers/25/deepseek-v3-2'
     | '/repos/MizuhoAOKI/jax-generative-models'
     | '/repos/Smerity/sha-rnn'
@@ -410,6 +421,7 @@ export interface FileRouteTypes {
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/explain/ml/transformer'
     | '/papers/25/deepseek-v3-2'
     | '/repos/MizuhoAOKI/jax-generative-models'
     | '/repos/Smerity/sha-rnn'
@@ -446,6 +458,7 @@ export interface RootRouteChildren {
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
+  ExplainMlTransformerRoute: typeof ExplainMlTransformerRoute
   Papers25DeepseekV32Route: typeof Papers25DeepseekV32Route
   ReposMizuhoAOKIJaxGenerativeModelsRoute: typeof ReposMizuhoAOKIJaxGenerativeModelsRoute
   ReposSmerityShaRnnRoute: typeof ReposSmerityShaRnnRoute
@@ -628,6 +641,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Papers25DeepseekV32RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/explain/ml/transformer': {
+      id: '/explain/ml/transformer'
+      path: '/explain/ml/transformer'
+      fullPath: '/explain/ml/transformer'
+      preLoaderRoute: typeof ExplainMlTransformerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/start/server-funcs': {
       id: '/demo/start/server-funcs'
       path: '/demo/start/server-funcs'
@@ -719,6 +739,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
+  ExplainMlTransformerRoute: ExplainMlTransformerRoute,
   Papers25DeepseekV32Route: Papers25DeepseekV32Route,
   ReposMizuhoAOKIJaxGenerativeModelsRoute:
     ReposMizuhoAOKIJaxGenerativeModelsRoute,
